@@ -16,8 +16,8 @@ import org.junit.runner.RunWith;
        // plugin = {"pretty", "html:target/cucumber-report.html"},
         plugin = { "pretty", "html:target/cucumber-reports.html","json:target/cucumber.json" },
         monochrome = true,
-        tags = "@checkout"
-       // tags="@POEI2-646"
+       tags = "@checkout"
+       // tags="@POEI2-771"
 
 )
 public class TestRunner extends Hooks {

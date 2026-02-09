@@ -1,5 +1,6 @@
-Feature: Connexion utilisateur
 @connexion
+Feature: Connexion utilisateur
+
   Scenario Outline: Connexion avec des identifiants valides
     Given l'utilisateur est sur la page de connexion
     When il saisit le username <username> et le mot de passe <mdp>

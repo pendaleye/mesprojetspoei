@@ -1,3 +1,4 @@
+@POEI2-771
 Feature: Connexion avec des identifiants valides
 
   @POEI2-646
@@ -9,4 +10,4 @@ Feature: Connexion avec des identifiants valides
     Examples:
       |username|mdp|
       |"standard_user"| "secret_sauce"|
-      |"standard_use"| "secret_sauc"|
+      |"standard_user"| "secret_sauce"|

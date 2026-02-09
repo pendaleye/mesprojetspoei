@@ -35,8 +35,8 @@ public class LoginSteps {
 
     @Then("il est redirigé vers la page d'accueil")
             public void affiche() {
-        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'Products')]"));
-        Assert.assertTrue(element.isDisplayed());
+       WebElement element = driver.findElement(By.xpath("//*[contains(text(),'Products')]"));
+       Assert.assertTrue(element.isDisplayed());
     }
 }
 
