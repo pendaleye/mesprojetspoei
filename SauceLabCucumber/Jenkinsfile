@@ -11,7 +11,7 @@ pipeline {
         string(name: 'SELENIUM_BROWSER', defaultValue: 'CHROME')
     }
     triggers {
-            cron('18 14 * * 1')
+            cron('00 10 * * 2')
         }
 
     stages {
@@ -42,18 +42,18 @@ pipeline {
 
 
                 // 2. Télécharger les features en ZIP
-                bat """ curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
+                bat """
+                curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
                 -X GET ^ -o features.zip ^
                 "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=%XRAY_ISSUES%"
                 """
 
-                echo "Dézip des features..."
+                echo 'Dézip des features...'
                 // 3. Dézipper dans un dossier temporaire
                 bat """
                 powershell -Command "Expand-Archive -Force features.zip extracted_features"
                 """
-                echo "
-                Copie des features dans le projet..."
+                echo 'Copie des features dans le projet...'
                 // 4. Copier dans ton projet
                 bat """
                  xcopy /Y /E /I extracted_features SauceLabCucumber\\src\\test\\resources\\features
