@@ -22,14 +22,7 @@ pipeline {
             }
         }
 
-        stage('Build & Test') {
-            steps {
-                echo 'Execution des tests Cucumber via Maven...'
-                bat 'cd SauceLabCucumber && mvn clean test'
 
-
-            }
-        }
 
         stage('Export to Xray') {
             steps {
@@ -47,6 +40,27 @@ pipeline {
                 // Lire le token
                 bat 'set /p XRAY_TOKEN=<token.txt'
 
+
+                // 2. Télécharger les features en ZIP
+                bat """ curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
+                -X GET ^ -o features.zip ^
+                "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=%XRAY_ISSUES%"
+                """
+
+                echo "Dézip des features..."
+                // 3. Dézipper dans un dossier temporaire
+                bat """
+                powershell -Command "Expand-Archive -Force features.zip extracted_features"
+                """
+                echo "
+                Copie des features dans le projet..."
+                // 4. Copier dans ton projet
+                bat """
+                 xcopy /Y /E /I extracted_features SauceLabCucumber\\src\\test\\resources\\features
+                  """
+                  }
+
+                  /*
                 // 2. Envoyer le JSON Cucumber
                 bat """
                     curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
@@ -54,10 +68,22 @@ pipeline {
                          -X POST ^
                          --data-binary @SauceLabCucumber/target/cucumber.json ^
                          https://xray.cloud.getxray.app/api/v2/import/execution/cucumber
+
                 """
+                */
             }
+
+             stage('Build & Test') {
+                        steps {
+                            echo 'Execution des tests Cucumber via Maven...'
+                            bat 'cd SauceLabCucumber && mvn clean test'
+
+
+                        }
+                    }
+
         }
-    }
+
 
     post {
         always {
