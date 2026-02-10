@@ -1,32 +1,30 @@
-
 pipeline {
     agent any
 
     environment {
         XRAY_CLIENT_ID     = "F2498B97E48E432B8CA9C60B2643F5FE"
         XRAY_CLIENT_SECRET = "00842304a949a62fb253162641daf2d466a7d12973a501542f69d7d63af17071"
-        }
+    }
 
     parameters {
         string(name: 'SELENIUM_BROWSER', defaultValue: 'CHROME')
     }
+
     triggers {
-            cron('00 10 * * 2')
-        }
+        cron('00 10 * * 2')
+    }
 
     stages {
 
         stage('Checkout') {
             steps {
-                echo 'Projet local - pas de checkout Git'
+                checkout scm
             }
         }
 
-
-
-        stage('Export to Xray') {
+        stage('Download Features from Xray') {
             steps {
-                echo 'Envoi du rapport JSON vers Xray...'
+                echo 'Téléchargement des features depuis Xray...'
 
                 // 1. Générer le token
                 bat """
@@ -35,58 +33,42 @@ pipeline {
                          -d "{\\"client_id\\": \\"%XRAY_CLIENT_ID%\\", \\"client_secret\\": \\"%XRAY_CLIENT_SECRET%\\"}" ^
                          https://xray.cloud.getxray.app/api/v2/authenticate ^
                          -o token.txt
-               """
+                """
 
                 // Lire le token
                 bat 'set /p XRAY_TOKEN=<token.txt'
 
-
                 // 2. Télécharger les features en ZIP
                 bat """
-                curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
-                -X GET ^
-                -o features.zip ^
-                 "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=POEI2-972"
-
+                    curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
+                         -X GET ^
+                         -o features.zip ^
+                         "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=POEI2-972"
                 """
 
                 echo 'Dézip des features...'
+
                 // 3. Dézipper dans un dossier temporaire
                 bat """
-                powershell -Command "Expand-Archive -Force C:\\Users\\IB\\Desktop\\Jenkins\\workspace\\exporterversxray\\features.zip extracted_features"
+                    powershell -Command "Expand-Archive -Force features.zip extracted_features"
                 """
+
                 echo 'Copie des features dans le projet...'
+
                 // 4. Copier dans ton projet
                 bat """
-                 xcopy /Y /E /I extracted_features SauceLabCucumber\\src\\test\\resources\\features
-
-                  """
-                  }
-
-                  /*
-                // 2. Envoyer le JSON Cucumber
-                bat """
-                    curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
-                         -H "Content-Type: application/json" ^
-                         -X POST ^
-                         --data-binary @SauceLabCucumber/target/cucumber.json ^
-                         https://xray.cloud.getxray.app/api/v2/import/execution/cucumber
-
+                    xcopy /Y /E /I extracted_features SauceLabCucumber\\src\\test\\resources\\features
                 """
-                */
             }
-
-             stage('Build & Test') {
-                        steps {
-                            echo 'Execution des tests Cucumber via Maven...'
-                            bat 'cd SauceLabCucumber && mvn clean test'
-
-
-                        }
-                    }
-
         }
 
+        stage('Build & Test') {
+            steps {
+                echo 'Execution des tests Cucumber via Maven...'
+                bat 'cd SauceLabCucumber && mvn clean test'
+            }
+        }
+    }
 
     post {
         always {
@@ -94,4 +76,3 @@ pipeline {
         }
     }
 }
-
