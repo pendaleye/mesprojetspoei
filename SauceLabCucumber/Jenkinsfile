@@ -44,8 +44,8 @@ pipeline {
                 // 2. Télécharger les features en ZIP
                 bat """
                 curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
-                -X GET ^ -o features.zip ^
-                "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=%XRAY_ISSUES%"
+                "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=POEI2-972"
+               -X GET ^ -o features.zip ^
                 """
 
                 echo 'Dézip des features...'
