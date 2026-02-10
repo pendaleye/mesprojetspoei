@@ -45,7 +45,7 @@ pipeline {
                 bat """
                 curl -H "Authorization: Bearer %XRAY_TOKEN%" ^
                 -X GET ^
-                -o 2features.zip ^
+                -o features.zip ^
                  "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=POEI2-972"
 
                 """
@@ -53,12 +53,13 @@ pipeline {
                 echo 'Dézip des features...'
                 // 3. Dézipper dans un dossier temporaire
                 bat """
-                powershell -Command "Expand-Archive -Force 2features.zip extracted_features"
+                powershell -Command "Expand-Archive -Force C:\\Users\\IB\\Desktop\\Jenkins\\workspace\\exporterversxray\\features.zip extracted_features"
                 """
                 echo 'Copie des features dans le projet...'
                 // 4. Copier dans ton projet
                 bat """
                  xcopy /Y /E /I extracted_features SauceLabCucumber\\src\\test\\resources\\features
+
                   """
                   }
 
