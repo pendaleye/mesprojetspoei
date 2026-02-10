@@ -1,0 +1,13 @@
+[router]
+username = "admin"
+password = "admin"
+
+[server]
+port = 4444
+
+[node]
+drivers = ["chrome", "firefox"]
+max-sessions = 2
+
+[sessionqueue]
+session-request-timeout = 500
