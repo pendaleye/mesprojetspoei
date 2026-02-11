@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.13.12 on win32)" generated="2026-02-10T12:00:46.484858" rpa="false" schemaversion="5">
+<suite id="s1" name="FirstTest" source="C:\dev\robotframework\FirstTest.robot">
+<test id="s1-t1" name="Test de connexion OK" line="9">
+<kw name="connexion">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-10T12:00:46.631733" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<arg>${monURL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-10T12:00:46.631567" elapsed="1.072823"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T12:00:47.704871" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<arg>id:user-name</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T12:00:47.704572" elapsed="0.077406"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T12:00:47.782320" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<arg>id:password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T12:00:47.782129" elapsed="0.060192"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-10T12:00:47.842618" level="INFO">Clicking element 'id:login-button'.</msg>
+<arg>id:login-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T12:00:47.842464" elapsed="0.061854"/>
+</kw>
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<status status="PASS" start="2026-02-10T12:00:46.631081" elapsed="1.273334"/>
+</kw>
+<kw name="verifier l'affichage de la page Product">
+<msg time="2026-02-10T12:00:47.905574" level="FAIL">No keyword with name 'verifier l'affichage de la page Product' found.</msg>
+<status status="FAIL" start="2026-02-10T12:00:47.905523" elapsed="0.000092">No keyword with name 'verifier l'affichage de la page Product' found.</status>
+</kw>
+<status status="FAIL" start="2026-02-10T12:00:46.630407" elapsed="1.275505">No keyword with name 'verifier l'affichage de la page Product' found.</status>
+</test>
+<status status="FAIL" start="2026-02-10T12:00:46.485830" elapsed="1.420914"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="FirstTest" id="s1" pass="0" fail="1" skip="0">FirstTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

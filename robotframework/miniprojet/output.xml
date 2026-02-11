@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.13.12 on win32)" generated="2026-02-10T16:49:12.935430" rpa="false" schemaversion="5">
+<suite id="s1" name="Dev" source="C:\dev">
+<suite id="s1-s1" name="Robotframework" source="C:\dev\robotframework">
+<suite id="s1-s1-s1" name="Miniprojet" source="C:\dev\robotframework\miniprojet">
+<suite id="s1-s1-s1-s1" name="Test" source="C:\dev\robotframework\miniprojet\Test">
+<suite id="s1-s1-s1-s1-s1" name="CheckoutTest" source="C:\dev\robotframework\miniprojet\Test\CheckoutTest.robot">
+<test id="s1-s1-s1-s1-s1-t1" name="Finalisation De Commande" line="10">
+<kw name="Ouvrir Le Navigateur" owner="navigateur">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:13.163341" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-10T16:49:13.163047" elapsed="2.018453"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.181796" elapsed="0.024567"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:13.162429" elapsed="2.044200"/>
+</kw>
+<kw name="Ouvrir La Page De Login" owner="login">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.207959" level="INFO">Opening url 'https://www.saucedemo.com'</msg>
+<arg>https://www.saucedemo.com</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.207712" elapsed="0.031991"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.207223" elapsed="0.032692"/>
+</kw>
+<kw name="Se Connecter Avec Les Identifiants" owner="login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.241335" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<arg>id:user-name</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.240925" elapsed="0.087709"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.329623" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<arg>id:password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.328968" elapsed="0.055480"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.385285" level="INFO">Clicking element 'id:login-button'.</msg>
+<arg>id:login-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.384802" elapsed="0.067081"/>
+</kw>
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<status status="PASS" start="2026-02-10T16:49:15.240441" elapsed="0.211821"/>
+</kw>
+<kw name="Ajouter Le Premier Produit Au Panier" owner="Product">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.453897" level="INFO">Clicking button 'xpath=(//button[contains(text(),"Add to cart")])[1]'.</msg>
+<arg>${FIRST_ADD_TO_CART_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.453537" elapsed="0.059148"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.453053" elapsed="0.060088"/>
+</kw>
+<kw name="Ouvrir Le Panier" owner="Cart">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.515830" level="INFO">Clicking element 'css=.shopping_cart_link'.</msg>
+<arg>${CART_ICON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.515067" elapsed="0.042892"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.514121" elapsed="0.044033"/>
+</kw>
+<kw name="Lancer Le Checkout" owner="Cart">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.559328" level="INFO">Clicking button 'id=checkout'.</msg>
+<arg>${CHECKOUT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.559060" elapsed="0.050800"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.558688" elapsed="0.051643"/>
+</kw>
+<kw name="Remplir Les Informations Client" owner="Checkout">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.613308" level="INFO">Typing text 'Penda' into text field 'id=first-name'.</msg>
+<arg>${FIRSTNAME_FIELD}</arg>
+<arg>${firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.612468" elapsed="0.062361"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.675764" level="INFO">Typing text 'Diallo' into text field 'id=last-name'.</msg>
+<arg>${LASTNAME_FIELD}</arg>
+<arg>${lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.675158" elapsed="0.058054"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.733968" level="INFO">Typing text '92000' into text field 'id=postal-code'.</msg>
+<arg>${POSTALCODE_FIELD}</arg>
+<arg>${postalcode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.733495" elapsed="0.066183"/>
+</kw>
+<arg>Penda</arg>
+<arg>Diallo</arg>
+<arg>92000</arg>
+<status status="PASS" start="2026-02-10T16:49:15.611416" elapsed="0.188478"/>
+</kw>
+<kw name="Continuer Le Checkout" owner="Checkout">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.801144" level="INFO">Clicking button 'id=continue'.</msg>
+<arg>${CONTINUE_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.800776" elapsed="0.051349"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.800236" elapsed="0.052113"/>
+</kw>
+<kw name="Finaliser La Commande" owner="Checkout">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-10T16:49:15.853429" level="INFO">Clicking button 'id=finish'.</msg>
+<arg>${FINISH_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-10T16:49:15.853146" elapsed="0.052746"/>
+</kw>
+<status status="PASS" start="2026-02-10T16:49:15.852759" elapsed="0.053546"/>
+</kw>
+<tag>POEI2-1041</tag>
+<status status="PASS" start="2026-02-10T16:49:13.159762" elapsed="2.748258"/>
+</test>
+<status status="PASS" start="2026-02-10T16:49:13.004815" elapsed="2.912014"/>
+</suite>
+<status status="PASS" start="2026-02-10T16:49:12.991431" elapsed="2.934337"/>
+</suite>
+<status status="PASS" start="2026-02-10T16:49:12.977893" elapsed="2.954043"/>
+</suite>
+<status status="PASS" start="2026-02-10T16:49:12.970672" elapsed="2.970638"/>
+</suite>
+<status status="PASS" start="2026-02-10T16:49:12.940197" elapsed="3.008444"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">POEI2-1041</stat>
+</tag>
+<suite>
+<stat name="Dev" id="s1" pass="1" fail="0" skip="0">Dev</stat>
+<stat name="Robotframework" id="s1-s1" pass="1" fail="0" skip="0">Dev.Robotframework</stat>
+<stat name="Miniprojet" id="s1-s1-s1" pass="1" fail="0" skip="0">Dev.Robotframework.Miniprojet</stat>
+<stat name="Test" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Dev.Robotframework.Miniprojet.Test</stat>
+<stat name="CheckoutTest" id="s1-s1-s1-s1-s1" pass="1" fail="0" skip="0">Dev.Robotframework.Miniprojet.Test.CheckoutTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
